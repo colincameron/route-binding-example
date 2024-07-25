@@ -2,8 +2,17 @@
 
 use App\Http\Controllers\PersonController;
 use App\Models\Organisation;
+use App\Models\Person;
 use Illuminate\Support\Facades\Context;
 use Illuminate\Support\Facades\Route;
+
+Route::get('working/{extraparameter}/people/{person}', function(string $extraparameter, Person $person) {
+    return $person->name;
+});
+
+Route::get('/fails/{extraparameter}/people/{person}', function(Person $person) {
+    return $person->name;
+});
 
 Route::domain(config('app.url'))->group(function () {
     Route::get('/', function () {
